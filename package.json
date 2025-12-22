@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky",
-    "drizzle-kit": "drizzle-kit",
+    "drizzle": "drizzle-kit",
     "dev:db": "turso dev --db-file local.db"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "@nuxt/icon": "^2.1.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "@tailwindcss/vite": "^4.1.18",
+    "better-auth": "^1.4.7",
     "concurrently": "^9.2.1",
     "drizzle-orm": "^0.45.1",
     "eslint": "^9.39.2",
