@@ -7,6 +7,11 @@ export default withNuxt(antfu({
   vue: true,
   typescript: true,
   formatters: true,
+  ignores: [
+    "README.md",
+    "migrations/**",
+    "**/migrations/**",
+  ],
   stylistic: {
     indent: 2,
     semi: true,
