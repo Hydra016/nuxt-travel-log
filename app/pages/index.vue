@@ -12,10 +12,7 @@
         <p class="py-6">
           Keep track of your travels and adventures with Nuxt Travel Log! Share your memories with others and enjoy!
         </p>
-        <button class="btn btn-accent">
-          Sign in with GitHub
-          <Icon name="tabler:brand-github" size="24" />
-        </button>
+        <BaseAuthButton />
       </div>
     </div>
   </div>
