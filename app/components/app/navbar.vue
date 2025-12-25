@@ -10,7 +10,7 @@
       </NuxtLink>
       <div class="navbar-end">
         <AppThemeToggle class="mr-4" />
-        <BaseAuthButton />
+        <AuthButton />
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@
         <p class="py-6">
           Keep track of your travels and adventures with Nuxt Travel Log! Share your memories with others and enjoy!
         </p>
-        <BaseAuthButton />
+        <AuthButton />
       </div>
     </div>
   </div>
