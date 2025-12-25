@@ -7,9 +7,6 @@ const {
   disabled,
   variant,
   action,
-  title,
-  iconName,
-  iconSize,
 } = defineProps({
   disabled: {
     type: Boolean,
@@ -23,18 +20,6 @@ const {
     type: Function as PropType<(() => void) | undefined>,
     default: undefined,
   },
-  title: {
-    type: String,
-    default: "Button Title",
-  },
-  iconName: {
-    type: String,
-    default: "",
-  },
-  iconSize: {
-    type: Number,
-    default: 24,
-  },
 });
 </script>
 
@@ -44,11 +29,6 @@ const {
     class="btn" :class="[`btn-${variant}`]"
     @click="action?.()"
   >
-    {{ title }}
-    <Icon
-      v-if="iconName"
-      :name="`tabler:${iconName}`"
-      :size="iconSize"
-    />
+    <slot />
   </button>
 </template>

@@ -20,11 +20,11 @@ function signOutUser() {
       </li>
     </ul>
   </BaseDropdown>
-  <button v-else :disabled="authStore.loading" class="btn btn-accent" @click="authStore.signIn">
-    Sign in with GitHub
+  <BaseCustomButton v-if="!authStore.user" :disabled="authStore.loading" variant="accent" :action="authStore.signIn">
+    <span>Sign In with GitHub</span>
     <span v-if="authStore.loading" class="loading loading-spinner loading-md" />
     <Icon v-else name="tabler:brand-github" size="24" />
-  </button>
+  </BaseCustomButton>
 </template>
 
 <style scoped>
