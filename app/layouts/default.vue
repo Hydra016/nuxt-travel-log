@@ -1,17 +1,13 @@
 <script setup>
 const authStore = useAuthStore();
-await authStore.init();
+onMounted(() => authStore.init()); // if init is client-only
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col">
+  <div>
     <AppNavbar />
-    <main>
+    <main class="p-4">
       <slot />
     </main>
   </div>
 </template>
-
-<style scoped>
-
-</style>

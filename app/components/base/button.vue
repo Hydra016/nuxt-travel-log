@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 
-import type { ButtonVariant } from "~/types/index";
+import type { TButtonVariant } from "~/types/index";
 
 const {
   disabled,
@@ -16,7 +16,7 @@ const {
     default: false,
   },
   variant: {
-    type: String as PropType<ButtonVariant>,
+    type: String as PropType<TButtonVariant>,
     default: "accent",
   },
   action: {
