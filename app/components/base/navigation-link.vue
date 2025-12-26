@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 
-import type { ButtonVariant } from "~/types/index";
+import type { TButtonVariant } from "~/types/index";
 
 const {
   variant,
   title,
   iconName,
   iconSize,
+  rtl,
 } = defineProps({
   disabled: {
     type: Boolean,
     default: false,
   },
   variant: {
-    type: String as PropType<ButtonVariant>,
+    type: String as PropType<TButtonVariant>,
     default: "accent",
   },
   path: {
@@ -33,12 +34,16 @@ const {
     type: Number,
     default: 24,
   },
+  rtl: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <template>
   <NuxtLink
-    class="btn" :class="[`btn-${variant}`]"
+    class="btn" :class="[`btn-${variant} ${rtl ? 'flex-row-reverse' : ''}`]"
     :to="path"
   >
     {{ title }}
