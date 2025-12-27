@@ -13,7 +13,6 @@ const authStore = useAuthStore();
       >
         <BaseIcon name="tabler:layout-sidebar-right-filled" :size="24" />
       </label>
-      <a class="btn btn-ghost text-xl">Travel Log</a>
     </div>
     <div class="navbar-end">
       <AppThemeToggle class="mr-4" />

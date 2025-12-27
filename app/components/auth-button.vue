@@ -36,9 +36,7 @@ function signOutUser() {
     </BaseCustomButton>
 
     <template #fallback>
-      <div class="btn m-1 p-8 opacity-70">
-        Loading…
-      </div>
+      <BaseSpinner />
     </template>
   </ClientOnly>
 </template>
