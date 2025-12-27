@@ -41,7 +41,8 @@ const {
 <template>
   <button
     :disabled="disabled"
-    class="btn" :class="[`btn-${variant}`]"
+    class="btn"
+    :class="[`btn-${variant}`]"
     @click="action?.()"
   >
     {{ title }}

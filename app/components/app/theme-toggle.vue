@@ -10,7 +10,12 @@ const isDark = computed({
 
 <template>
   <label class="swap swap-rotate">
-    <input v-model="isDark" type="checkbox" class="theme-controller" value="synthwave">
+    <input
+      v-model="isDark"
+      type="checkbox"
+      class="theme-controller"
+      value="synthwave"
+    >
     <Icon size="24" class="swap-on" name="tabler:sun" />
     <Icon size="24" class="swap-off" name="tabler:moon" />
   </label>

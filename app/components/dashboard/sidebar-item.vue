@@ -28,7 +28,13 @@ const route = useRoute();
 
 <template>
   <li>
-    <NuxtLink class="is-drawer-close:tooltip is-drawer-close:tooltip-right" :class="{ 'bg-base-300': route.path === path }" :data-tip="title" :to="path" @click="action">
+    <NuxtLink
+      class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+      :class="{ 'bg-base-300': route.path === path }"
+      :data-tip="title"
+      :to="path"
+      @click="action"
+    >
       <BaseIcon :name="iconName" :size="24" />
       <span class="is-drawer-close:hidden">{{ title }}</span>
     </NuxtLink>

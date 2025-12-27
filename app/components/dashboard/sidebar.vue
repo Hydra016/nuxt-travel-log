@@ -13,7 +13,12 @@ const authStore = useAuthStore();
           <SidebarItem title="Locations" icon-name="tabler:map" path="/dashboard" />
           <SidebarItem title="Add Location" icon-name="tabler:circle-plus-filled" path="/location/add" />
         </div>
-        <SidebarItem title="Signout" icon-name="tabler:logout" path="/" :action="authStore.signOut" />
+        <SidebarItem
+          title="Signout"
+          icon-name="tabler:logout"
+          path="/"
+          :action="authStore.signOut"
+        />
       </ul>
     </div>
   </div>

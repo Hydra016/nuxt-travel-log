@@ -20,13 +20,19 @@ const {
     type: Function as PropType<(() => void) | undefined>,
     default: undefined,
   },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    default: "button",
+  },
 });
 </script>
 
 <template>
   <button
     :disabled="disabled"
-    class="btn" :class="[`btn-${variant}`]"
+    class="btn"
+    :class="[`btn-${variant}`]"
+    :type="type"
     @click="action?.()"
   >
     <slot />
