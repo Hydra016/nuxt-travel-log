@@ -31,8 +31,8 @@ const authStore = useAuthStore();
                 Your Locations
               </h3>
             </div>
-            <div v-if="status === 'pending'" class="flex justify-center">
-              <BaseSkeleton />
+            <div v-if="status === 'pending'" class="flex justify-center py-5">
+              <BaseSpinner />
             </div>
             <div v-if="locations && locations.length > 0">
               <SidebarItem
@@ -43,7 +43,7 @@ const authStore = useAuthStore();
                 :path="`/location/${location.id}`"
               />
             </div>
-            <div v-else class="px-3 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="No locations added">
+            <div v-if="status !== 'pending' && locations.length === 0" class="px-3 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="No locations added">
               <span class="is-drawer-close:hidden ml-8">No locations added</span>
             </div>
           </div>
