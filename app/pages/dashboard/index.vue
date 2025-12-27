@@ -5,7 +5,6 @@ definePageMeta({
 
 const locationStore = useLocationsStore();
 const { locations, status } = storeToRefs(locationStore);
-
 onMounted(() => {
   locationStore.refresh();
 });
@@ -14,7 +13,9 @@ onMounted(() => {
 <template>
   <div class="page-content-top">
     <div v-if="status === 'pending'">
-      <span class="loading loading-spinner loading-xl" />
+      <div class="location-list flex flex-wrap gap-4 mt-4">
+        <BaseSkeleton v-for="(i) in 7" :key="i" />
+      </div>
     </div>
     <div v-else-if="locations && locations.length > 0" class="location-list flex flex-wrap gap-4 mt-4">
       <LocationCard
