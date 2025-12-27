@@ -1,3 +1,9 @@
+import type { DrizzleError } from "drizzle-orm";
+
+import { eq } from "drizzle-orm";
+import { customAlphabet } from "nanoid";
+import slugify from "slug";
+
 import db from "~/lib/db";
 import { insertLocationSchema, location } from "~/lib/db/schema";
 
@@ -26,11 +32,32 @@ export default defineEventHandler(async (event) => {
     }));
   }
 
-  const [created] = await db.insert(location).values({
-    ...result.data,
-    slug: result.data.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, ""),
-    userId: event.context.user.id,
-  }).returning();
+  let slug = slugify(result.data.name);
+  const existing = await db.query.location.findFirst({
+    where: eq(location.slug, slug),
+  });
 
-  return created;
+  if (existing) {
+    const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 5);
+    slug = `${slug}-${nanoid()}`;
+  }
+
+  try {
+    const [created] = await db.insert(location).values({
+      ...result.data,
+      slug,
+      userId: event.context.user.id,
+    }).returning();
+    return created;
+  }
+  catch (e) {
+    const error = e as DrizzleError;
+    if (error.message === "SQLITE_CONSTRAINT: SQLite error: UNIQUE constraint failed: location.slug") {
+      return sendError(event, createError({
+        statusCode: 422,
+        statusMessage: "Slug must be unique (the location name is used to generate the slug)",
+      }));
+    };
+    throw error;
+  }
 });
