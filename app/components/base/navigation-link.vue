@@ -43,7 +43,8 @@ const {
 
 <template>
   <NuxtLink
-    class="btn" :class="[`btn-${variant} ${rtl ? 'flex-row-reverse' : ''}`]"
+    class="btn"
+    :class="[`btn-${variant} ${rtl ? 'flex-row-reverse' : ''}`]"
     :to="path"
   >
     {{ title }}
