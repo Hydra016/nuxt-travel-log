@@ -8,6 +8,27 @@
       "when": 1766492683078,
       "tag": "0000_solid_alex_wilder",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1766832442645,
+      "tag": "0001_futuristic_energizer",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1766832603829,
+      "tag": "0002_known_pepper_potts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1766832648343,
+      "tag": "0003_premium_luke_cage",
+      "breakpoints": true
     }
   ]
 }
