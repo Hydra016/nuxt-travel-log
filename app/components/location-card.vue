@@ -1,21 +1,26 @@
 <script lang="ts" setup>
-// import type { MapPoint } from "~/lib/types";
-
-// defineProps<{
-//   mapPoint: MapPoint;
-// }>();
-
-// const mapStore = useMapStore();
+// import type { MapPoint } from "~/types";
 
 const { name, description } = defineProps<{
   name: string;
   description: string;
+  location: any;
+  // mapPoint: MapPoint;
+
 }>();
+
+const mapStore = useMapStore();
 </script>
 
 <template>
   <NuxtLink
     class="card card-compact bg-base-300 h-40 border-2 w-72 mb-2 shrink-0 hover:cursor-pointer"
+    :class="{
+      'border-accent': location.id === mapStore.selectedPoint?.id,
+      'border-transparent': location.id !== mapStore.selectedPoint?.id,
+    }"
+    @mouseenter="mapStore.selectedPoint = location"
+    @mouseleave="mapStore.selectedPoint = null"
   >
     <div class="card-body">
       <slot name="top" />

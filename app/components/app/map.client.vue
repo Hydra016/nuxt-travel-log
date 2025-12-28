@@ -80,15 +80,30 @@ onMounted(() => {
       <template #marker>
         <div
           class="tooltip tooltip-top tooltip-open"
-          :data-tip="point.label"
+          :data-tip="point.name"
+          :class="{
+            'tooltip-open': mapStore.selectedPoint === point,
+          }"
+          @mouseenter="mapStore.selectedPoint === point"
+          @mouseleave="mapStore.selectedPoint = null"
         >
           <Icon
             name="tabler:map-pin-filled"
             size="35"
-            class="text-secondary"
+            :class="mapStore.selectedPoint === point ? 'text-accent' : 'text-secondary'"
           />
         </div>
       </template>
+      <MglPopup>
+        <div class="p-2">
+          <h3 class="text-lg font-bold">
+            {{ point.name }}
+          </h3>
+          <p v-if="point.description">
+            {{ point.description }}
+          </p>
+        </div>
+      </MglPopup>
     </MglMarker>
   </MglMap>
 </template>

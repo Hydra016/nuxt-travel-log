@@ -23,6 +23,7 @@ onMounted(() => {
         :key="location.id"
         :name="location.name"
         :description="location.description"
+        :location="location"
       />
     </div>
     <div v-else class="flex flex-col gap-4 mt-80 items-center justify-center min-h-full">
