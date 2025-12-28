@@ -24,6 +24,7 @@ function onMapLoad(e: any) {
 }
 
 onMounted(() => {
+  mapStore.init();
   if (!import.meta.client)
     return;
   if (!navigator.geolocation)
@@ -81,9 +82,6 @@ onMounted(() => {
         <div
           class="tooltip tooltip-top tooltip-open"
           :data-tip="point.name"
-          :class="{
-            'tooltip-open': mapStore.selectedPoint === point,
-          }"
           @mouseenter="mapStore.selectedPoint === point"
           @mouseleave="mapStore.selectedPoint = null"
         >
