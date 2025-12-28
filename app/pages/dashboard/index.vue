@@ -32,6 +32,8 @@ onMounted(() => {
       </NuxtLink>
       <p>Add a location to get started</p>
     </div>
+
+    <AppMap />
   </div>
 </template>
 
