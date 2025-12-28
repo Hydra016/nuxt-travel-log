@@ -11,12 +11,7 @@ export const useLocationsStore = defineStore("useLocationsStore", () => {
 
   effect(() => {
     if (locations.value) {
-      mapStore.mapPoints = locations.value.map((loc: any) => ({
-        id: loc.id,
-        label: loc.label,
-        lat: loc.lat,
-        long: loc.long,
-      }));
+      mapStore.mapPoints = locations.value;
     }
   });
 
