@@ -5,6 +5,7 @@ import { MglMap, MglMarker, MglNavigationControl } from "@indoorequal/vue-maplib
 import { computed, onMounted, ref } from "vue";
 
 const colorMode = useColorMode();
+const mapStore = useMapStore();
 
 const style = computed(() =>
   colorMode.value === "dark"
@@ -15,7 +16,7 @@ const style = computed(() =>
 const center = ref<[number, number]>([0, 0]);
 const userLocation = ref<[number, number] | null>(null);
 
-const zoom = ref(8);
+const zoom = ref(100);
 
 const mapRef = ref<MapLibreMap | null>(null);
 function onMapLoad(e: any) {
@@ -70,6 +71,25 @@ onMounted(() => {
       :coordinates="userLocation"
       anchor="bottom"
     />
+
+    <MglMarker
+      v-for="point in mapStore.mapPoints"
+      :key="point.id"
+      :coordinates="[point.long, point.lat]"
+    >
+      <template #marker>
+        <div
+          class="tooltip tooltip-top tooltip-open"
+          :data-tip="point.label"
+        >
+          <Icon
+            name="tabler:map-pin-filled"
+            size="35"
+            class="text-secondary"
+          />
+        </div>
+      </template>
+    </MglMarker>
   </MglMap>
 </template>
 
