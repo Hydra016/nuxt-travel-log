@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="page-content-top">
+  <div class="h-full flex flex-col page-content-top">
     <div v-if="status === 'pending'">
       <div class="location-list flex flex-wrap gap-4 mt-4">
         <BaseSkeleton v-for="(i) in 7" :key="i" />
@@ -33,8 +33,9 @@ onMounted(() => {
       </NuxtLink>
       <p>Add a location to get started</p>
     </div>
-
-    <AppMap />
+    <div class="flex-1 locations-map">
+      <AppMap />
+    </div>
   </div>
 </template>
 

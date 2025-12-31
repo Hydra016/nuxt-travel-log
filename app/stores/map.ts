@@ -3,6 +3,7 @@ import type { MapPoint } from "~/types";
 export const useMapStore = defineStore("useMapStore", () => {
   const mapPoints = ref<MapPoint[]>([]);
   const selectedPoint = ref<MapPoint | null>(null);
+  const addedPoint = ref<MapPoint | null>(null);
 
   async function init() {
     const { useMap } = await import("@indoorequal/vue-maplibre-gl");
@@ -43,9 +44,23 @@ export const useMapStore = defineStore("useMapStore", () => {
         });
       }
     });
+
+    watch(addedPoint, (newVal, oldVal) => {
+      if (newVal && !oldVal) {
+        map.map?.flyTo({
+          center: [newVal.long, newVal.lat],
+          zoom: 20,
+          curve: 1,
+          easing(t) {
+            return t;
+          },
+        });
+      }
+    });
   }
 
   return {
+    addedPoint,
     init,
     mapPoints,
     selectedPoint,

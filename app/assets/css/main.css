@@ -44,3 +44,7 @@ html[data-theme="dark"] {
     @apply border-l-gray-800;
   }
 }
+
+.locations-map .maplibregl-map {
+  height: 100%;
+}
