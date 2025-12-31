@@ -11,11 +11,11 @@ definePageMeta({
 
 const submitError = ref<string>("");
 const loading = ref<boolean>(false);
-const { handleSubmit, errors, setErrors } = useForm({
+const { handleSubmit, errors, setErrors, setFieldValue } = useForm({
   validationSchema: toTypedSchema(insertLocationSchema),
 });
 const { $csrfFetch } = useNuxtApp();
-
+const mapStore = useMapStore();
 const onSubmit = handleSubmit(async (values) => {
   try {
     loading.value = true;
@@ -37,11 +37,32 @@ const onSubmit = handleSubmit(async (values) => {
   }
   loading.value = false;
 });
+
+onMounted(() => {
+  mapStore.addedPoint = {
+    id: 1,
+    name: "Added Point",
+    description: "",
+    long: 20,
+    lat: 25,
+  };
+});
+
+onBeforeRouteLeave(() => {
+  mapStore.addedPoint = null;
+});
+
+effect(() => {
+  if (mapStore.addedPoint) {
+    setFieldValue("lat", mapStore.addedPoint.lat);
+    setFieldValue("long", mapStore.addedPoint.long);
+  }
+});
 </script>
 
 <template>
-  <div class="flex">
-    <div class="container max-w-md p-4">
+  <div class="flex min-h-full">
+    <div class="container max-w-md p-4 bg-base-300 min-h-full">
       <div class="my-4">
         <h1 class="text-lg">
           Add Location
@@ -68,22 +89,7 @@ const onSubmit = handleSubmit(async (values) => {
           :error="errors.description"
           :disabled="loading"
         />
-        <AppFormField
-          label="Longitude"
-          name="long"
-          type="number"
-          placeholder="51.5074° N, 0.1278° W"
-          :error="errors.long"
-          :disabled="loading"
-        />
-        <AppFormField
-          label="Latitude"
-          name="lat"
-          type="number"
-          placeholder="56.9496° N, 24.1052° E"
-          :error="errors.lat"
-          :disabled="loading"
-        />
+        <p>Drag the <BaseIcon :size="15" name="tabler:map-pin-filled" /> to your desired location.</p>
         <fieldset class="flex justify-between">
           <BaseCustomButton :disabled="loading" variant="ghost">
             <BaseIcon name="tabler:cancel" class="inline-block" />

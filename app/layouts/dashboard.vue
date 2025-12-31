@@ -7,9 +7,9 @@ await authStore.init();
   <ClientOnly>
     <div class="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" class="drawer-toggle">
-      <div class="drawer-content">
+      <div class="drawer-content flex flex-col">
         <AppNavbar />
-        <div class="p-4">
+        <div class="flex-1">
           <slot />
         </div>
       </div>
