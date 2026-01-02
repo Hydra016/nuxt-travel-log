@@ -29,6 +29,10 @@ effect(() => {
         <h2>{{ location.name }}</h2>
         <p>{{ location.description }}</p>
         <p>{{ msToReadableDate(location.createdAt) }}</p>
+        <div v-if="!location.locationLogs.length">
+          Add a location log to get started
+          <BaseButton title="Add Location Log" />
+        </div>
       </div>
       <BaseAlert
         v-if="error && status !== 'pending'"

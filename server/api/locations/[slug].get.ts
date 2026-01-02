@@ -13,6 +13,9 @@ export default defineAuthenticatedEventHandler(async (event) => {
       eq(location.slug, slug),
       eq(location.userId, event.context.user.id),
     ),
+    with: {
+      locationLogs: true,
+    },
   });
 
   if (!foundLocation) {

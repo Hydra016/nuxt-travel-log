@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { int, real, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 import { user } from "./auth";
@@ -18,3 +19,10 @@ export const locationLog = sqliteTable("locationLog", {
 }, t => [
   unique().on(t.name, t.userId),
 ]);
+
+export const locationLogRelations = relations(locationLog, ({ one }) => ({
+  location: one(location, {
+    fields: [locationLog.locationId],
+    references: [location.id],
+  }),
+}));
