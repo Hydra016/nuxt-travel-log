@@ -40,7 +40,7 @@ const authStore = useAuthStore();
                 :key="location.id"
                 :title="location.name"
                 icon-name="tabler:map-pin"
-                :path="`/location/${location.id}`"
+                :path="`/location/${location.slug}`"
               />
             </div>
             <div v-if="status !== 'pending' && locations.length === 0" class="px-3 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="No locations added">
