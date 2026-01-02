@@ -25,13 +25,19 @@ effect(() => {
       <div v-if="status === 'pending'">
         <BaseSpinner />
       </div>
-      <div v-if="location && status !== 'pending'">
-        <h2>{{ location.name }}</h2>
-        <p>{{ location.description }}</p>
-        <p>{{ msToReadableDate(location.createdAt) }}</p>
-        <div v-if="!location.locationLogs.length">
-          Add a location log to get started
-          <BaseButton title="Add Location Log" />
+      <div v-if="location && status !== 'pending'" class="flex flex-col min-h-full">
+        <p>Created on. {{ msToReadableDate(location.createdAt) }}</p>
+        <div class="my-4">
+          <h1 class="text-xl">
+            {{ location.name }}
+          </h1>
+          <p class="text-base">
+            {{ location.description }}
+          </p>
+        </div>
+        <div v-if="!location.locationLogs.length" class="flex-1 flex items-center justify-center flex-col gap-4">
+          <span>Add a location log to get started</span>
+          <BaseButton title="Add Location Log" variant="primary" icon-name="map-pin-plus" />
         </div>
       </div>
       <BaseAlert
